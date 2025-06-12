@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Adriele Vieira - Questionário de Qualidade de Vida</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #3c3330;
+      --secondary: #A12200;
+      --background: #fff;
+      --card-bg: #ffffff;
+      --accent: #b7e4c7;
+      --text: #212529;
+      --border: #d3e0dc;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--primary);
+      margin-top: 32px;
+      margin-bottom: 0px;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    }
+
+    form {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(44, 62, 80, 0.08);
+      padding: 32px 32px 24px 32px;
+      max-width: 540px;
+      width: 100%;
+      margin-bottom: 32px;
+      border: 1px solid var(--border);
+    }
+
+    .pergunta {
+      margin-bottom: 28px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pergunta:last-child {
+      border-bottom: none;
+    }
+
+    label {
+      font-weight: 600;
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+    }
+
+    input[type="radio"] {
+      accent-color: var(--primary);
+      margin-right: 8px;
+      margin-bottom: 8px;
+      transform: scale(1.2);
+      vertical-align: middle;
+    }
+
+    .pergunta br {
+      display: none;
+    }
+
+    .pergunta input[type="radio"] + label,
+    .pergunta input[type="radio"] {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    .pergunta input[type="radio"] {
+      margin-left: 0;
+    }
+
+    .pergunta input[type="radio"]:not(:first-child) {
+      margin-top: 8px;
+    }
+
+    .pergunta input[type="radio"] + span {
+      margin-right: 16px;
+      font-weight: 400;
+      color: var(--text);
+    }
+
+    .pergunta input[type="radio"] + span:last-child {
+      margin-right: 0;
+    }
+
+    /* Custom radio layout for better readability */
+    .pergunta input[type="radio"] {
+      margin-bottom: 0;
+    }
+    .pergunta label,
+    .pergunta .alternativa {
+      display: block;
+      margin-bottom: 6px;
+    }
+    .alternativa {
+      font-weight: 400;
+      color: var(--text);
+      margin-left: 2px;
+      margin-bottom: 2px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border-radius: 6px;
+      padding: 2px 4px;
+      display: flex;
+      align-items: center;
+    }
+    .alternativa:hover {
+      background: var(--accent);
+    }
+
+    button[type="submit"] {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 12px;
+      transition: background 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.06);
+      letter-spacing: 0.5px;
+    }
+    button[type="submit"]:hover {
+      background: var(--secondary);
+    }
+
+    .resultado {
+      margin-top: 24px;
+      font-weight: bold;
+      font-size: 1.25rem;
+      color: var(--primary);
+      text-align: center;
+      background: var(--accent);
+      border-radius: 8px;
+      padding: 18px 12px;
+      max-width: 540px;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid var(--border);
+      margin-bottom:20px;
+    }
+
+    @media (max-width: 600px) {
+      form, .resultado {
+        padding: 18px 6vw 14px 6vw;
+        max-width: 98vw;
+        font-size: 1rem;
+      }
+      h1 {
+        font-size: 1.3rem;
+        margin-top: 18px;
+        margin-bottom: 16px;
+      }
+      .pergunta label {
+        font-size: 1rem;
+      }
+      .resultado {
+        font-size: 1rem;
+        padding: 12px 4vw;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div style="width:100%;display:flex;justify-content:center;margin-top:32px;margin-bottom:8px;">
+    <img src="logo.png" alt="Logo da clínica" style="object-fit:contain;">
+  </div>
+
+  <h2>Questionário de Qualidade de Vida</h2>
+  <h4>Fonte: Yasbeck e Fontani (2005)</h4>
+
+  <form id="formulario">
+    <div class="pergunta">
+      <label>1. Você acha que a doença atrapalha a vida do seu animal?</label>
+      <label class="alternativa"><input type="radio" name="q1" value="0" required> Muitíssimo</label>
+      <label class="alternativa"><input type="radio" name="q1" value="1"> Muito</label>
+      <label class="alternativa"><input type="radio" name="q1" value="2"> Um pouco</label>
+      <label class="alternativa"><input type="radio" name="q1" value="3"> Não</label>
+    </div>
+
+    <div class="pergunta">
+      <label>2. O seu animal continua fazendo as coisas que gosta?</label>
+      <label class="alternativa"><input type="radio" name="q2" value="0" required> Nunca mais fez</label>
+      <label class="alternativa"><input type="radio" name="q2" value="1"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q2" value="2"> Frequentemente</label>
+      <label class="alternativa"><input type="radio" name="q2" value="3"> Normalmente</label>
+    </div>
+
+    <div class="pergunta">
+      <label>3. Como está o comportamento/temperamento do seu animal?</label>
+      <label class="alternativa"><input type="radio" name="q3" value="0" required> Totalmente alterado</label>
+      <label class="alternativa"><input type="radio" name="q3" value="1"> Alguns episódios de alteração</label>
+      <label class="alternativa"><input type="radio" name="q3" value="2"> Mudou um pouco</label>
+      <label class="alternativa"><input type="radio" name="q3" value="3"> Normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>4. O seu animal manteve os hábitos de higiene?</label>
+      <label class="alternativa"><input type="radio" name="q4" value="0" required> Não</label>
+      <label class="alternativa"><input type="radio" name="q4" value="1"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q4" value="2"> Menos que antes</label>
+      <label class="alternativa"><input type="radio" name="q4" value="3"> Normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>5. Você acha que o seu animal sente dor?</label>
+      <label class="alternativa"><input type="radio" name="q5" value="0" required> Sempre</label>
+      <label class="alternativa"><input type="radio" name="q5" value="1"> Frequentemente</label>
+      <label class="alternativa"><input type="radio" name="q5" value="2"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q5" value="3"> Nunca</label>
+    </div>
+
+    <div class="pergunta">
+      <label>6. O seu animal tem apetite?</label>
+      <label class="alternativa"><input type="radio" name="q6" value="0" required> Não</label>
+      <label class="alternativa"><input type="radio" name="q6" value="1"> Só come forçado/o que gosta</label>
+      <label class="alternativa"><input type="radio" name="q6" value="2"> Pouco</label>
+      <label class="alternativa"><input type="radio" name="q6" value="3"> Normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>7. O seu animal se cansa facilmente?</label>
+      <label class="alternativa"><input type="radio" name="q7" value="0" required> Sempre</label>
+      <label class="alternativa"><input type="radio" name="q7" value="1"> Frequentemente</label>
+      <label class="alternativa"><input type="radio" name="q7" value="2"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q7" value="3"> Está normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>8. Como está o sono do seu animal?</label>
+      <label class="alternativa"><input type="radio" name="q8" value="0" required> Muito ruim</label>
+      <label class="alternativa"><input type="radio" name="q8" value="1"> Ruim</label>
+      <label class="alternativa"><input type="radio" name="q8" value="2"> Bom</label>
+      <label class="alternativa"><input type="radio" name="q8" value="3"> Normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>9. O seu animal tem vômitos?</label>
+      <label class="alternativa"><input type="radio" name="q9" value="0" required> Sempre</label>
+      <label class="alternativa"><input type="radio" name="q9" value="1"> Frequentemente</label>
+      <label class="alternativa"><input type="radio" name="q9" value="2"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q9" value="3"> Não</label>
+    </div>
+
+    <div class="pergunta">
+      <label>10. Como está o funcionamento do intestino do seu animal?</label>
+      <label class="alternativa"><input type="radio" name="q10" value="0" required> Péssimo</label>
+      <label class="alternativa"><input type="radio" name="q10" value="1"> Ruim</label>
+      <label class="alternativa"><input type="radio" name="q10" value="2"> Quase normal</label>
+      <label class="alternativa"><input type="radio" name="q10" value="3"> Normal</label>
+    </div>
+
+    <div class="pergunta">
+      <label>11. O seu animal é capaz de se posicionar sozinho para fazer xixi e cocô?</label>
+      <label class="alternativa"><input type="radio" name="q11" value="0" required> Nunca mais conseguiu</label>
+      <label class="alternativa"><input type="radio" name="q11" value="1"> Raramente</label>
+      <label class="alternativa"><input type="radio" name="q11" value="2"> Às vezes</label>
+      <label class="alternativa"><input type="radio" name="q11" value="3"> Consegue normalmente</label>
+    </div>
+
+    <div class="pergunta">
+      <label>12. Quanta atenção o animal está dando para a família?</label>
+      <label class="alternativa"><input type="radio" name="q12" value="0" required> Está indiferente</label>
+      <label class="alternativa"><input type="radio" name="q12" value="1"> Pouca atenção</label>
+      <label class="alternativa"><input type="radio" name="q12" value="2"> Aumentou muito</label>
+      <label class="alternativa"><input type="radio" name="q12" value="3"> Não mudou/está normal</label>
+    </div>
+
+    <button type="submit">Calcular Escore</button>
+  </form>
+
+  <div class="resultado" id="resultado" style="display:none;">
+    <canvas id="graficoEscore" width="400" height="220" style="margin: 0 auto; display: block;"></canvas>
+    <div id="comparativo" style="margin-top:18px;"></div>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.getElementById("formulario").addEventListener("submit", function(event) {
+      event.preventDefault();
+      let total = 0;
+      for (let i = 1; i <= 12; i++) {
+        let resposta = document.querySelector(`input[name="q${i}"]:checked`);
+        total += parseInt(resposta.value);
+      }
+
+      // Esconde o formulário
+      document.getElementById("formulario").style.display = "none";
+
+      // Mensagem comparativa
+      let mensagem = `<strong>Escore total do seu animal: ${total}</strong><br>`;
+      mensagem += "<br><strong>Comparativo:</strong><br>";
+      mensagem += "• <span style='color:#40916c;font-weight:bold;'>Animal saudável</span>: 27 a 36 pontos<br>";
+      mensagem += "• <span style='color:#A12200;font-weight:bold;'>Animal com câncer</span>: 12 a 29 pontos<br>";
+
+      // Exibe resultado e gráfico
+      const resultadoDiv = document.getElementById("resultado");
+      document.getElementById("comparativo").innerHTML = mensagem;
+      resultadoDiv.style.display = "block";
+
+      // Gráfico comparativo
+      const ctx = document.getElementById('graficoEscore').getContext('2d');
+      if (window.graficoEscore) window.graficoEscore.destroy();
+      window.graficoEscore = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Seu animal', 'Saudável', 'Com câncer'],
+          datasets: [{
+            label: 'Escore',
+            data: [total, 31.5, 20.5],
+            backgroundColor: [
+              '#3c3330',
+              '#40916c',
+              '#A12200'
+            ]
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              min: 0,
+              max: 36,
+              ticks: { stepSize: 6 }
+            }
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
