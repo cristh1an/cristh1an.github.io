@@ -186,6 +186,13 @@
         font-size: 1rem;
         padding: 12px 4vw;
       }
+      .pergunta {
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+      .alternativa {
+        padding-left: 2vw;
+      }
     }
   </style>
 </head>
@@ -301,6 +308,17 @@
   <div class="resultado" id="resultado" style="display:none;">
     <canvas id="graficoEscore" width="400" height="220" style="margin: 0 auto; display: block;"></canvas>
     <div id="comparativo" style="margin-top:18px;"></div>
+    <div id="info-escore"
+      style="background:#f8f9fa;border-radius:8px;border:1px solid #d3e0dc;padding:16px 18px;margin:24px auto 0 auto;max-width:480px;color:#333;font-size:1rem;box-shadow:0 2px 8px rgba(44,62,80,0.04);">
+      <ul style="padding-left: 20px; margin: 0;">
+        <li>A média de escore para cães e gatos <b>saudáveis</b> é de <b>34±3</b> (mínimo de 27 e máximo de 36).</li>
+        <li>A média de escore para cães e gatos <b>com câncer</b> é de <b>21±5</b> (mínimo de 12 e máximo de 29).</li>
+        <li>A redução de escore ao longo do tempo ou escores muito baixos são importantes para determinar qual conduta.</li>
+      </ul>
+      <blockquote style="margin:24px 0 0 0;padding:16px 18px;background:#fff3cd;border-left:6px solid #ffe066;border-radius:8px;font-style:italic;color:#856404;font-size:1.08rem;box-shadow:0 1px 4px rgba(44,62,80,0.04);">
+        “Nem sempre podemos curar, mas sempre podemos cuidar”
+      </blockquote>
+    </div>
   </div>
 
   <!-- Chart.js CDN -->
