@@ -305,61 +305,127 @@
 
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.4.0"></script>
   <script>
-    document.getElementById("formulario").addEventListener("submit", function(event) {
-      event.preventDefault();
-      let total = 0;
-      for (let i = 1; i <= 12; i++) {
-        let resposta = document.querySelector(`input[name="q${i}"]:checked`);
-        total += parseInt(resposta.value);
-      }
+  let graficoEscore = null;
 
-      // Esconde o formulário
-      document.getElementById("formulario").style.display = "none";
+  document.getElementById("formulario").addEventListener("submit", function(event) {
+    event.preventDefault();
+    let total = 0;
+    for (let i = 1; i <= 12; i++) {
+      let resposta = document.querySelector(`input[name="q${i}"]:checked`);
+      total += parseInt(resposta.value);
+    }
 
-      // Mensagem comparativa
-      let mensagem = `<strong>Escore total do seu animal: ${total}</strong><br>`;
-      mensagem += "<br><strong>Comparativo:</strong><br>";
-      mensagem += "• <span style='color:#40916c;font-weight:bold;'>Animal saudável</span>: 27 a 36 pontos<br>";
-      mensagem += "• <span style='color:#A12200;font-weight:bold;'>Animal com câncer</span>: 12 a 29 pontos<br>";
+    // Esconde o formulário
+    document.getElementById("formulario").style.display = "none";
 
-      // Exibe resultado e gráfico
-      const resultadoDiv = document.getElementById("resultado");
-      document.getElementById("comparativo").innerHTML = mensagem;
-      resultadoDiv.style.display = "block";
+    // Mensagem comparativa mais clara
+    let mensagem = `<strong>Escore total do seu animal: ${total}</strong><br><br>`;
+    mensagem += "<strong>Como interpretar:</strong><br>";
+    mensagem += "<span style='display:inline-block;width:16px;height:16px;background:#b7e4c7;border-radius:3px;border:1px solid #40916c;margin-right:6px;vertical-align:middle;'></span>";
+    mensagem += "<span style='color:#40916c;font-weight:bold;'>Zona saudável</span>: <b>27 a 36 pontos</b><br>";
+    mensagem += "<span style='display:inline-block;width:16px;height:16px;background:#ffe5d0;border-radius:3px;border:1px solid #A12200;margin-right:6px;vertical-align:middle;'></span>";
+    mensagem += "<span style='color:#A12200;font-weight:bold;'>Zona de atenção (câncer)</span>: <b>12 a 29 pontos</b><br>";
+    mensagem += "<span style='display:inline-block;width:16px;height:3px;background:#3c3330;margin-right:6px;vertical-align:middle;'></span>";
+    mensagem += "<span style='color:#3c3330;font-weight:bold;'>Seu animal</span>";
 
-      // Gráfico comparativo
-      const ctx = document.getElementById('graficoEscore').getContext('2d');
-      if (window.graficoEscore) window.graficoEscore.destroy();
-      window.graficoEscore = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: ['Seu animal', 'Saudável', 'Com câncer'],
-          datasets: [{
-            label: 'Escore',
-            data: [total, 31.5, 20.5],
-            backgroundColor: [
-              '#3c3330',
-              '#40916c',
-              '#A12200'
-            ]
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { display: false }
-          },
-          scales: {
-            y: {
-              min: 0,
-              max: 36,
-              ticks: { stepSize: 6 }
+    // Exibe resultado e gráfico
+    const resultadoDiv = document.getElementById("resultado");
+    document.getElementById("comparativo").innerHTML = mensagem;
+    resultadoDiv.style.display = "block";
+
+    // Gráfico de barra única com marcações
+    const ctx = document.getElementById('graficoEscore').getContext('2d');
+    if (graficoEscore) {
+      graficoEscore.destroy();
+    }
+    graficoEscore = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Escore'],
+        datasets: [{
+          label: 'Seu animal',
+          data: [total],
+          backgroundColor: '#3c3330'
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true,
+        plugins: {
+          legend: { display: false },
+          annotation: {
+            annotations: {
+              saudavel: {
+                type: 'box',
+                yMin: -0.5,
+                yMax: 0.5,
+                xMin: 27,
+                xMax: 36,
+                backgroundColor: 'rgba(64,145,108,0.18)',
+                borderColor: '#40916c',
+                borderWidth: 2,
+                borderDash: [6, 3],
+                label: {
+                  enabled: true,
+                  content: 'Saudável',
+                  position: 'start',
+                  backgroundColor: '#40916c',
+                  color: '#fff',
+                  font: { size: 12 }
+                }
+              },
+              cancer: {
+                type: 'box',
+                yMin: -0.5,
+                yMax: 0.5,
+                xMin: 12,
+                xMax: 29,
+                backgroundColor: 'rgba(255,229,208,0.35)',
+                borderColor: '#A12200',
+                borderWidth: 2,
+                borderDash: [6, 3],
+                label: {
+                  enabled: true,
+                  content: 'Atenção (Câncer)',
+                  position: 'end',
+                  backgroundColor: '#A12200',
+                  color: '#fff',
+                  font: { size: 12 }
+                }
+              },
+              seuAnimal: {
+                type: 'line',
+                xMin: total,
+                xMax: total,
+                borderColor: '#3c3330',
+                borderWidth: 4,
+                label: {
+                  enabled: true,
+                  content: 'Seu animal',
+                  position: 'center',
+                  backgroundColor: '#3c3330',
+                  color: '#fff',
+                  font: { size: 12 }
+                }
+              }
             }
           }
+        },
+        scales: {
+          x: {
+            min: 0,
+            max: 36,
+            ticks: { stepSize: 6 }
+          },
+          y: {
+            display: false
+          }
         }
-      });
+      }
     });
+  });
   </script>
 
 </body>
